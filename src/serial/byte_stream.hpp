@@ -40,7 +40,9 @@ class ByteStream {
     bool atEnd() const;
 
     ByteArray* device() const;
-    void setDevice(ByteArray *array, OpenMode mode=OpenMode::ReadWrite);
+
+    void setDevice(ByteArray *array);
+    void setDevice(ByteArray *array, OpenMode mode);
 
     void read(char *&buffer, uint32_t &count);
 
