@@ -7,8 +7,7 @@
 #define BYTE_STREAM_HPP
 
 #include <cstdint>
-
-class ByteArray; // forward declare ByteArray
+#include "byte_array.hpp"
 
 /*!
     \brief Class to handle binary streams to and from ByteArrays
@@ -41,7 +40,7 @@ class ByteStream {
     bool atEnd() const;
 
     ByteArray* device() const;
-    void setDevice(ByteArray *array, OpenMode mode);
+    void setDevice(ByteArray *array, OpenMode mode=OpenMode::ReadWrite);
 
     void read(char *&buffer, uint32_t &count);
 
@@ -97,6 +96,7 @@ private:
     OpenMode mMode;
     ByteOrder mOrder;
     Status mStatus;
+    ByteArray::iterator mIter;
 
 
 };
