@@ -96,8 +96,14 @@ public:
     void operator>>(double &d);
 
 private:
+    template<typename T>
+    void toBigEndian(T value);
+
+    template<typename T>
+    void toLitteEndian(T value);
+
     void checkOpenMode() const;
-    bool moveWillStayInBounds(const uint32_t move);
+    bool moveWillStayInBounds(const uint64_t move);
 
     constexpr bool isReadOnly() const;
     constexpr bool isWriteOnly() const;

@@ -7,6 +7,17 @@
 #include <cassert>
 #include <cstring>
 
+#ifdef LINUX
+    #include <endian.h>
+#endif
+
+#ifdef WIN32
+    #include "stdlib.h"
+#endif
+
+#ifdef MACOS
+    #include <endian.h>
+#endif
 /*!
     \brief Default constructor for the ByteStream class
 
@@ -297,4 +308,14 @@ constexpr bool ByteStream::isReadOnly() const {
 
 constexpr bool ByteStream::isWriteOnly() const {
     return mMode == OpenMode::WriteOnly;
+}
+
+template<typename T>
+void ByteStream::toBigEndian(T value) {
+
+}
+
+template<typename T>
+void ByteStream::toLitteEndian(T value){
+
 }

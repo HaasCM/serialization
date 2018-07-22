@@ -1,6 +1,21 @@
 cmake_minimum_required(VERSION 3.2)
 project(serial C CXX)
 
+if (WIN32)
+    message("windows operating system")
+    add_definitions(-DWIN32)
+endif(WIN32)
+if(UNIX AND NOT APPLE)
+    message("Linux detected")
+    add_definitions(-DLINUX)
+endif(UNIX AND NOT APPLE)
+
+if(UNIX AND APPLE)
+    message("MACOS detected")
+    add_definitions(-DMACOS)
+endif(UNIX AND APPLE)
+
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(SOURCE_FILES byte_array.cpp byte_stream.cpp)
