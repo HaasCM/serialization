@@ -4,6 +4,8 @@
 */
 #include "byte_stream.hpp"
 #include <algorithm>
+#include <cassert>
+#include <cstring>
 
 /*!
     \brief Default constructor for the ByteStream class
@@ -63,6 +65,10 @@ ByteArray*ByteStream::device() const {
     } else {
         return nullptr;
     }
+}
+
+ByteStream::OpenMode ByteStream::mode() const {
+    return mMode;
 }
 
 /*!

@@ -13,6 +13,7 @@
     \brief Class to handle binary streams to and from ByteArrays
 */
 class ByteStream {
+public:
     enum class OpenMode {
         ReadOnly,
         WriteOnly,
@@ -40,6 +41,8 @@ class ByteStream {
     bool atEnd() const;
 
     ByteArray* device() const;
+
+    OpenMode mode() const;
 
     void setDevice(ByteArray *array);
     void setDevice(ByteArray *array, OpenMode mode);
