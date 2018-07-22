@@ -28,8 +28,7 @@ public:
 
     enum class Status {
         Ok,
-        ReadPastEnd,
-        ReadCorruptData,
+        ReadWritePastEnd,
         WriteFailed
     };
 
