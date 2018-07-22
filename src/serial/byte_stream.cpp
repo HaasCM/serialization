@@ -97,7 +97,7 @@ void ByteStream::setDevice(ByteArray* array, ByteStream::OpenMode mode) {
     \param count the count that was read
  */
 void ByteStream::read(char*& buffer, uint32_t& count) {
-    if(mArray) {
+    if(mArray && mode() != OpenMode::ReadOnly) {
         // Verify that we allocate the out parameter
         if(buffer) {
             delete[] buffer;
