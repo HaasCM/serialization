@@ -55,12 +55,13 @@ public:
     void setStatus(Status status);
     void resetStatus();
 
-    int skipRawData(uint32_t length);
+    uint32_t skipRawData(uint32_t length);
 
-    void writeBytes(const char *s, uint32_t len);
+    void writeBytes(const char *s, uint64_t len);
 
     int writeRawData(const char *s, uint32_t len);
 
+    //write to the stream
     void operator<<(uint8_t i);
     void operator<<(uint16_t i);
     void operator<<(uint32_t i);
@@ -77,6 +78,7 @@ public:
     void operator<<(float f);
     void operator<<(double d);
 
+    // from the stream
     void operator>>(uint8_t &i);
     void operator>>(uint16_t &i);
     void operator>>(uint32_t &i);
@@ -95,6 +97,10 @@ public:
 
 private:
     void checkOpenMode() const;
+    bool moveWillStayInBounds(const uint32_t move);
+
+    constexpr bool isReadOnly() const;
+    constexpr bool isWriteOnly() const;
 
     ByteArray *mArray;
     OpenMode mMode;

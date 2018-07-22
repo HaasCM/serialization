@@ -129,32 +129,172 @@ void ByteStream::setByteOrder(ByteStream::ByteOrder bo) {
     mOrder = bo;
 }
 
-ByteStream::Status ByteStream::status() const
-{
+/*!
+    \brief Returns the status of the byte stream
 
+    Statuses
+    Ok - Status is ok
+    ReadPastEnd - ByteStream tried to read past the buffer
+    WriteFailed - Write to the buffer failed
+
+    \return returns thr status of the byte stream
+*/
+ByteStream::Status ByteStream::status() const {
+    return mStatus;
 }
 
-void ByteStream::setStatus(ByteStream::Status status)
-{
-
+/*!
+    \brief Function which allows the user/developer to set the status
+    \param status the desired status to set the stream to
+*/
+void ByteStream::setStatus(ByteStream::Status status) {
+    mStatus = status;
 }
 
-void ByteStream::resetStatus()
-{
-
+/*!
+    \brief Function used to reset the status of the stream
+ */
+void ByteStream::resetStatus() {
+    mStatus = Status::Ok;
 }
 
-int ByteStream::skipRawData(uint32_t length)
-{
-
+uint32_t ByteStream::skipRawData(uint32_t length) {
+    if(moveWillStayInBounds(length)) {
+        mIter += length;
+        return length;
+    } else {
+        return 0;
+    }
 }
 
-void ByteStream::writeBytes(const char* s, uint32_t len)
-{
+void ByteStream::writeBytes(const char* s, uint64_t len) {
+    if(!s || mode() == OpenMode::ReadOnly || status() != Status::Ok) {
+        return;
+    }
 
+    if(moveWillStayInBounds(len)) {
+        std::copy(s, s+len, mIter);
+    }
 }
 
-int ByteStream::writeRawData(const char* s, uint32_t len)
-{
+int ByteStream::writeRawData(const char* s, uint32_t len) {
+    if(!s || mode() == OpenMode::ReadOnly || status() != Status::Ok) {
+        return -1;
+    } else if(moveWillStayInBounds(len)) {
+        std::copy(s,s+len, mIter);
+        return static_cast<int>(len);
+    } else {
+        return -1;
+    }
+}
 
+void ByteStream::operator<<(uint8_t i) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(&i, &i+sizeof(i), mIter);
+        mIter += sizeof(i);
+    }
+}
+
+void ByteStream::operator<<(uint16_t i) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(&i, &i+sizeof(i), mIter);
+        mIter += sizeof(i);
+    }
+}
+
+void ByteStream::operator<<(uint32_t i) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(&i, &i+sizeof(i), mIter);
+        mIter += sizeof(i);
+    }
+}
+
+void ByteStream::operator<<(uint64_t i) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(&i, &i+sizeof(i), mIter);
+        mIter += sizeof(i);
+    }
+}
+
+void ByteStream::operator<<(int8_t i) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(&i, &i+sizeof(i), mIter);
+        mIter += sizeof(i);
+    }
+}
+
+void ByteStream::operator<<(int16_t i) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(&i, &i+sizeof(i), mIter);
+        mIter += sizeof(i);
+    }
+}
+
+void ByteStream::operator<<(int32_t i) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(&i, &i+sizeof(i), mIter);
+        mIter += sizeof(i);
+    }
+}
+
+void ByteStream::operator<<(int64_t i) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(&i, &i+sizeof(i), mIter);
+        mIter += sizeof(i);
+    }
+}
+
+void ByteStream::operator<<(bool b) {
+    assert(!isReadOnly());
+    if(moveWillStayInBounds(sizeof(b))) {
+        std::copy(&b, &b+sizeof(b), mIter);
+        mIter += sizeof(b);
+    }
+}
+
+void ByteStream::operator<<(const char*& s) {
+    assert(!isReadOnly());
+
+    writeBytes(s, strlen(s));
+}
+
+void ByteStream::operator<<(float f) {
+    assert(!isReadOnly());
+}
+
+void ByteStream::operator<<(double d) {
+    assert(!isReadOnly());
+}
+
+void ByteStream::operator>>(uint8_t& i) {
+    std::copy(mArray->begin(), mArray->begin()+sizeof(i), &i);
+}
+
+bool ByteStream::moveWillStayInBounds(const uint64_t move) {
+    if(!mArray) {
+        return false;
+    }
+
+    if(mIter + move >= mArray->end() && mStatus == Status::Ok) {
+        return true;
+    } else {
+        mStatus = Status::ReadWritePastEnd;
+        return false;
+    }
+}
+
+constexpr bool ByteStream::isReadOnly() const {
+    return mMode == OpenMode::ReadOnly;
+}
+
+constexpr bool ByteStream::isWriteOnly() const {
+    return mMode == OpenMode::WriteOnly;
 }
