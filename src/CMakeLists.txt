@@ -10,8 +10,10 @@ add_subdirectory(serial)
 include_directories(include)
 include_directories(serial)
 
+find_package (Threads)
+
 add_executable(serial_test ${SOURCE_FILES})
-target_link_libraries(serial_test serial)
+target_link_libraries(serial_test serial ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS serial_test DESTINATION bin)
 
