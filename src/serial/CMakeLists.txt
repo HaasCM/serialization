@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.2)
 project(serial C CXX)
 
+if(NOT DEFINED PROJECT_ROOT_DIR)
+    set(PROJECT_ROOT_DIR ${PROJECT_SOURCE_DIR}/../..)
+endif(NOT DEFINED PROJECT_ROOT_DIR)
+
+include(${PROJECT_ROOT_DIR}/cmake_modules/uninstall.cmake)
+
 if (WIN32)
     message("windows operating system")
     add_definitions(-DWIN32)
