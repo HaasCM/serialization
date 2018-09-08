@@ -105,8 +105,8 @@ private:
     void checkOpenMode() const;
     bool moveWillStayInBounds(const uint64_t move);
 
-    constexpr bool isReadOnly() const;
-    constexpr bool isWriteOnly() const;
+    bool isReadOnly() const;
+    bool isWriteOnly() const;
 
     ByteArray *mArray;
     OpenMode mMode;

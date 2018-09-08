@@ -340,7 +340,7 @@ void ByteStream::operator<<(float f) {
     assert(!isReadOnly());
 
     if(moveWillStayInBounds(sizeof(f))) {
-        std::copy(&b, &b+sizeof(f), mIter);
+        std::copy(&f, &f+sizeof(f), mIter);
         mIter += sizeof(f);
     }
 }
@@ -371,11 +371,11 @@ bool ByteStream::moveWillStayInBounds(const uint64_t move) {
     }
 }
 
-constexpr bool ByteStream::isReadOnly() const {
+bool ByteStream::isReadOnly() const {
     return mMode == OpenMode::ReadOnly;
 }
 
-constexpr bool ByteStream::isWriteOnly() const {
+bool ByteStream::isWriteOnly() const {
     return mMode == OpenMode::WriteOnly;
 }
 
