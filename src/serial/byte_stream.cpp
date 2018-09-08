@@ -385,6 +385,62 @@ void ByteStream::operator>>(uint8_t& i) {
     }
 }
 
+void ByteStream::operator>>(uint16_t &i) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(mIter, mIter+sizeof(i), &i);
+    }
+}
+
+void ByteStream::operator>>(uint32_t &i) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(mIter, mIter+sizeof(i), &i);
+    }
+}
+
+void ByteStream::operator>>(uint64_t &i) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(mIter, mIter+sizeof(i), &i);
+    }
+}
+
+void ByteStream::operator>>(int8_t &i) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(mIter, mIter+sizeof(i), &i);
+    }
+}
+
+void ByteStream::operator>>(int16_t &i) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(mIter, mIter+sizeof(i), &i);
+    }
+}
+
+void ByteStream::operator>>(int32_t &i) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(mIter, mIter+sizeof(i), &i);
+    }
+}
+
+void ByteStream::operator>>(int64_t &i) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(mIter, mIter+sizeof(i), &i);
+    }
+}
+
 /*!
     \brief Checks to see if the iterator move will stay in bounds
     \param move the moves to make with the iterator
