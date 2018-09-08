@@ -363,7 +363,7 @@ bool ByteStream::moveWillStayInBounds(const uint64_t move) {
         return false;
     }
 
-    if(mIter + move >= mArray->end() && mStatus == Status::Ok) {
+    if(mIter + move <= mArray->end() && mStatus == Status::Ok) {
         return true;
     } else {
         mStatus = Status::ReadWritePastEnd;
