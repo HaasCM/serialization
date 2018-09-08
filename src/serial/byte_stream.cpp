@@ -214,6 +214,25 @@ int ByteStream::writeRawData(const char* s, uint32_t len) {
         return -1;
     } else if(moveWillStayInBounds(len)) {
         std::copy(s,s+len, mIter);
+        mIter += len;
+        return static_cast<int>(len);
+    } else {
+        return -1;
+    }
+}
+
+/*!
+    \brief Function to read raw data from the string
+    \param s the char* to read into
+    \param len the length of bytes to read
+    \return returns the number of bytes read
+ */
+int ByteStream::readRawData(char *s, uint32_t len) {
+    if(!s || mode() == OpenMode::WriteOnly || status() != Status::Ok) {
+        return -1;
+    } else if(moveWillStayInBounds(len)) {
+        std::copy(mIter, mIter + len, s);
+        mIter += len;
         return static_cast<int>(len);
     } else {
         return -1;
