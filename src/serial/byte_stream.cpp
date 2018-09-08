@@ -408,10 +408,18 @@ bool ByteStream::moveWillStayInBounds(const uint64_t move) {
     }
 }
 
+/*!
+    \brief Function to return if the steam is read only of the Byte Stream
+    \return true if read only, otherwise false
+*/
 bool ByteStream::isReadOnly() const {
     return mMode == OpenMode::ReadOnly;
 }
 
+/*!
+    \brief Function to return if the steam is write only of the Byte Stream
+    \return true if write only, otherwise false
+*/
 bool ByteStream::isWriteOnly() const {
     return mMode == OpenMode::WriteOnly;
 }
