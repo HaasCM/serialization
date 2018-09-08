@@ -385,6 +385,10 @@ void ByteStream::operator>>(uint8_t& i) {
     }
 }
 
+/*!
+    \brief Reads a uint16_t from the stream into a value
+    \param i the value to read into
+*/
 void ByteStream::operator>>(uint16_t &i) {
     assert(!isWriteOnly());
 
@@ -393,6 +397,10 @@ void ByteStream::operator>>(uint16_t &i) {
     }
 }
 
+/*!
+    \brief Reads a uint32_t from the stream into a value
+    \param i the value to read into
+*/
 void ByteStream::operator>>(uint32_t &i) {
     assert(!isWriteOnly());
 
@@ -401,6 +409,10 @@ void ByteStream::operator>>(uint32_t &i) {
     }
 }
 
+/*!
+    \brief Reads a uint64_t from the stream into a value
+    \param i the value to read into
+*/
 void ByteStream::operator>>(uint64_t &i) {
     assert(!isWriteOnly());
 
@@ -409,6 +421,10 @@ void ByteStream::operator>>(uint64_t &i) {
     }
 }
 
+/*!
+    \brief Reads a int8_t from the stream into a value
+    \param i the value to read into
+*/
 void ByteStream::operator>>(int8_t &i) {
     assert(!isWriteOnly());
 
@@ -417,6 +433,10 @@ void ByteStream::operator>>(int8_t &i) {
     }
 }
 
+/*!
+    \brief Reads a int16_t from the stream into a value
+    \param i the value to read into
+*/
 void ByteStream::operator>>(int16_t &i) {
     assert(!isWriteOnly());
 
@@ -425,6 +445,10 @@ void ByteStream::operator>>(int16_t &i) {
     }
 }
 
+/*!
+    \brief Reads a int32_t from the stream into a value
+    \param i the value to read into
+*/
 void ByteStream::operator>>(int32_t &i) {
     assert(!isWriteOnly());
 
@@ -433,6 +457,10 @@ void ByteStream::operator>>(int32_t &i) {
     }
 }
 
+/*!
+    \brief Reads a int64_t from the stream into a value
+    \param i the value to read into
+*/
 void ByteStream::operator>>(int64_t &i) {
     assert(!isWriteOnly());
 
