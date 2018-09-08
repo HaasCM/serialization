@@ -78,6 +78,10 @@ ByteArray*ByteStream::device() const {
     }
 }
 
+/*!
+    \brief Returns the open mode of the ByteStream
+    \return the open mode of the byte stream
+*/
 ByteStream::OpenMode ByteStream::mode() const {
     return mMode;
 }
@@ -198,6 +202,12 @@ void ByteStream::writeBytes(const char* s, uint64_t len) {
     }
 }
 
+/*!
+    \brief Function to read in raw data into the stream with length len
+    \param s the char* to read in
+    \param len the length of bytes to read in
+    \return returns the number of bytes read in
+*/
 int ByteStream::writeRawData(const char* s, uint32_t len) {
     if(!s || mode() == OpenMode::ReadOnly || status() != Status::Ok) {
         return -1;
@@ -354,6 +364,10 @@ void ByteStream::operator<<(double d) {
     }
 }
 
+/*!
+    \brief Reads a uint8_t from the stream into a value
+    \param i the value to read into
+*/
 void ByteStream::operator>>(uint8_t& i) {
     assert(!isWriteOnly());
 
@@ -362,6 +376,11 @@ void ByteStream::operator>>(uint8_t& i) {
     }
 }
 
+/*!
+    \brief Checks to see if the iterator move will stay in bounds
+    \param move the moves to make with the iterator
+    \return true if it will stay in bounds, otherwise false
+*/
 bool ByteStream::moveWillStayInBounds(const uint64_t move) {
     if(!mArray) {
         return false;
