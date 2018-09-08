@@ -5,6 +5,7 @@
 #include "byte_stream.hpp"
 #include <algorithm>
 #include <cassert>
+#include <limits>
 #include <cstring>
 
 #ifdef LINUX
@@ -386,7 +387,12 @@ bool ByteStream::moveWillStayInBounds(const uint64_t move) {
         return false;
     }
 
-    if(mIter + move <= mArray->end() && mStatus == Status::Ok) {
+
+    if(move > std::numeric_limits<int64_t>::max()) {
+        return false;
+    }
+
+    if(mIter + static_cast<int64_t>(move) <= mArray->end() && mStatus == Status::Ok) {
         return true;
     } else {
         mStatus = Status::ReadWritePastEnd;
