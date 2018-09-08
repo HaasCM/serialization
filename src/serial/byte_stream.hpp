@@ -97,10 +97,10 @@ public:
 
 private:
     template<typename T>
-    void toBigEndian(T value);
+    T toBigEndian(T value);
 
     template<typename T>
-    void toLitteEndian(T value);
+    T toLitteEndian(T value);
 
     void checkOpenMode() const;
     bool moveWillStayInBounds(const uint64_t move);

@@ -425,11 +425,41 @@ bool ByteStream::isWriteOnly() const {
 }
 
 template<typename T>
-void ByteStream::toBigEndian(T value) {
+T ByteStream::toBigEndian(T value) {
+    switch(sizeof(T)) {
+        case 1:
 
+        case 2:
+            #ifdef LINUX
+            return htobe16(value);
+            #endif
+        case 3:
+            #ifdef LINUX
+            return htobe32(value);
+            #endif
+        case 4:
+            #ifdef LINUX
+            return htobe64(value);
+            #endif
+    }
 }
 
 template<typename T>
-void ByteStream::toLitteEndian(T value){
+T ByteStream::toLitteEndian(T value){
+    switch(sizeof(T)) {
+        case 1:
 
+        case 2:
+            #ifdef LINUX
+            return htole16(value);
+            #endif
+        case 3:
+            #ifdef LINUX
+            return htole32(value);
+            #endif
+        case 4:
+            #ifdef LINUX
+            return htole64(value);
+            #endif
+    }
 }
