@@ -355,7 +355,11 @@ void ByteStream::operator<<(double d) {
 }
 
 void ByteStream::operator>>(uint8_t& i) {
-    std::copy(mArray->begin(), mArray->begin()+sizeof(i), &i);
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(i))) {
+        std::copy(mIter, mIter+sizeof(i), &i);
+    }
 }
 
 bool ByteStream::moveWillStayInBounds(const uint64_t move) {
