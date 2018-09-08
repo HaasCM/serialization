@@ -13,6 +13,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(SOURCE_FILES main.cpp)
 
 add_subdirectory(serial)
+add_subdirectory(tests)
 include_directories(include)
 include_directories(serial)
 
