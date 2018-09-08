@@ -347,19 +347,27 @@ void ByteStream::operator<<(const char*& s) {
     writeBytes(s, strlen(s));
 }
 
+/*!
+    \brief Writes a floating point number to the stream using IEEE 754
+    \param f the float to read in
+*/
 void ByteStream::operator<<(float f) {
     assert(!isReadOnly());
 
-    if(moveWillStayInBounds(sizeof(f))) {
+    if(moveWillStayInBounds(sizeof(int32_t))) {
         std::copy(&f, &f+sizeof(f), mIter);
         mIter += sizeof(f);
     }
 }
 
+/*!
+    \brief Writes a floating point number to the stream using IEEE 754
+    \param d the double to read in
+*/
 void ByteStream::operator<<(double d) {
     assert(!isReadOnly());
 
-    if(moveWillStayInBounds(sizeof(d))) {
+    if(moveWillStayInBounds(sizeof(int64_t))) {
         std::copy(&d, &d+sizeof(d), mIter);
         mIter += sizeof(d);
     }
