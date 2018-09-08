@@ -488,6 +488,34 @@ void ByteStream::operator>>(int64_t &i) {
     }
 }
 
+void ByteStream::operator>>(bool &b) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(bool))) {
+        std::copy(mIter, mIter+sizeof(bool), &b);
+    }
+}
+
+void ByteStream::operator>>(const char *&s) {
+
+}
+
+void ByteStream::operator>>(float &f) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(int32_t))) {
+        std::copy(mIter, mIter+sizeof(int32_t), &f);
+    }
+}
+
+void ByteStream::operator>>(double &d) {
+    assert(!isWriteOnly());
+
+    if(moveWillStayInBounds(sizeof(int64_t))) {
+        std::copy(mIter, mIter+sizeof(int64_t), &d);
+    }
+}
+
 /*!
     \brief Checks to see if the iterator move will stay in bounds
     \param move the moves to make with the iterator
