@@ -30,28 +30,12 @@ int main(int argc, const char* argv[]) {
     std::cout << "Size: " << ba.size() << std::endl;
     ByteStream s(&ba, ByteStream::OpenMode::ReadWrite);
     uint8_t value(16);
-    s << value;
-    for(const auto &byte : ba) {
-        std::cout << byte <<std::endl;
-    }
-
+    std::cout << "Value: " << static_cast<short>(value) << std::endl;
+    ByteStream readStream(&ba, ByteStream::OpenMode::ReadWrite);
+    readStream << value;
     uint8_t second = 0;
     s >> second;
     std::cout << static_cast<short>(second) << std::endl;
-
-    auto future = std::async(std::launch::async, getUserInput);
-    while(true) {
-
-        if(future.wait_for(std::chrono::seconds(0)) ==
-           std::future_status::ready) {
-            auto response = future.get();
-            future = std::async(std::launch::async, getUserInput);
-            std::cout << "Response : " << response << std::endl;
-        }
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
-        //std::this_thread::yield();
-    }
 
     return 0;
 }
