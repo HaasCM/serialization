@@ -33,9 +33,11 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp byte_array_test_suite.cpp)
+include_directories(../common)
 
-set(HEADER_FILES byte_array_test_suite.hpp)
+set(SOURCE_FILES byte_array_test_suite.cpp)
+
+set(HEADER_FILES byte_array_test_suite.hpp ../common/common.hpp)
 
 add_executable(test_byte_array ${SOURCE_FILES} ${HEADER_FILES})
 
