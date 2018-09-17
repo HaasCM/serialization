@@ -10,6 +10,11 @@
 
 #include "byte_array.hpp"
 
+/*!
+    \brief Class to describe the behavior and execution of Unit Tests
+
+    This class handles the execution of Unit Tests for the ByteArray class
+*/
 class ByteArrayTestSuite : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(ByteArrayTestSuite);
 
