@@ -60,6 +60,7 @@ public:
     void writeBytes(const char *s, uint64_t len);
 
     int writeRawData(const char *s, uint32_t len);
+    int readRawData(char *s, uint32_t len);
 
     //write to the stream
     void operator<<(uint8_t i);
