@@ -33,9 +33,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp byte_stream_test_suite.cpp)
+set(SOURCE_FILES byte_stream_test_suite.cpp)
 
-set(HEADER_FILES byte_stream_test_suite.hpp)
+set(HEADER_FILES byte_stream_test_suite.hpp ../common/common.hpp)
 
 add_executable(test_byte_stream ${SOURCE_FILES} ${HEADER_FILES})
 
