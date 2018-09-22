@@ -3,8 +3,8 @@
     \brief File to define the ByteArrayTestSuite class
 */
 
-#ifndef BYTE_ARRAY_TEST_SUITE
-#define BYTE_ARRAY_TEST_SUITE
+#ifndef BYTE_ARRAY_TEST_SUITE_HPP
+#define BYTE_ARRAY_TEST_SUITE_HPP
 
 #include <cppunit/extensions/HelperMacros.h>
 
