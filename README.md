@@ -1,4 +1,5 @@
-# Serialization - What the standard library for C++11 is missing.
+# Serialization
+## "What the standard library for C++11 is missing."
 Serialization is a small serialization library I use for small projects, which leverages the C++11 standard library. Serialization applies a good spin on serialization encapsulating all of the pointer arithematic used in traditional serialization.
 
 ## Introduction
