@@ -1,17 +1,22 @@
-# cmake_template
-A template project for a C++/C Application using modern cmake
+# Serialization - What the standard library for C++11 is missing.
+Serialization is a small serialization library I use for small projects, which leverages the C++11 standard library. Serialization applies a good spin on serialization encapsulating all of the pointer arithematic used in traditional serialization.
 
 ## Introduction
-I created this cmake_template to have a fast and easy to use template for cmake projects, so I don't need to rewrite alot of the boiler plate code necessary for the build system.
-
-Feel free to pull it, remove the .git file and use the template for whatever project you need. I just really hate having to rewrite the same code over and over again when I lose interest in one project and want to start another.
-
-If you see anything wrong, or see a better way to organize the build system, please feel free to submit a pull request, I'll definetly accept any feedback.
+Serialization is easey to use:
+```C++
+void function_to_serialize() {
+    ByteArray array;
+    ByteStream stream(&array, OpenMode::ReadWrite);
+    int i = 1;
+    int j = 6;
+    
+    stream << 1;
+    stream << 6;
+}
+```
 
 ## Build
-If this is your first cmake build, don't worry; It's actually pretty easy and it's one build system that's actually growing on me. CMake forces good software architecture and modularity if done right.
-
-When building a cmake project you have two options, an in-source build and an out-of-source build. Personally, I prefer the latter; it keeps your source code directories cleaner. However, whatever floats your boat; It's your project anyway.
+Serialization is a simple library, there are no dependencies! It's a cmake3 build system too. So you've got two easy choices for building:
 
 ### In-Source Build
 
@@ -41,27 +46,21 @@ You can place the build directory wherever you'd like, and you can name it whate
 
 ## Installation
 
-So far we've built the application binaries, what do we do now? Let's install them. This is easy as well. Just follow the below steps.
+Just run make install, its that easy
 
 ```
 cd {directory_where_your_build_is}
 sudo make install
 ```
 
-That's it, the binaries, libraries, and headers will be installed to wherever you specified in your CMakeLists.txt files.
-
 ## Building Documentation
 
-The part we love, hate, and love to hate; Software Documentation. Personally, I always lean towards Doxygen for my documentation choice, it's simple, it can be used with various languages, and it just creates really clean documentation.
-
-In this project I included a doxygen.cfg file in the doc directory, to build the documentation follow the below commands.
+In source doxygen documentation can be found in serialization. You can build it by installing Doxygen, and running the below command
 
 ```
 cd {directory_where_your_build_is}
 make doc
 ```
-
-This will output the documentation into doc. Checkout the top level CMakeLists.txt, that's where I placed the custom cmake rule to build the documentation.
 
 ### Comments
 
